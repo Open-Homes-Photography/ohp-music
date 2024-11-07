@@ -9,6 +9,7 @@ use App\Values\UserPreferences;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -47,11 +48,14 @@ class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
+    use HasUuids;
     use Notifiable;
 
     protected $guarded = ['id'];
     protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at', 'invitation_accepted_at'];
     protected $appends = ['avatar'];
+    protected $keyType = 'uuid';
+    public $incrementing = false;
 
     protected $casts = [
         'is_admin' => 'bool',
