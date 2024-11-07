@@ -25,7 +25,7 @@ class AddContributingArtistIdIntoSongs extends Migration
     public function down(): void
     {
         Schema::table('songs', static function (Blueprint $table): void {
-            $table->dropColumn('contributing_artist_id');
+            // $table->dropColumn('contributing_artist_id');
         });
     }
 }

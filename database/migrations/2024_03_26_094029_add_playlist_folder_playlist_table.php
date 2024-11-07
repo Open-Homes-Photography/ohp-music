@@ -50,4 +50,9 @@ return new class extends Migration
             $table->dropColumn('folder_id');
         });
     }
+
+    public function down(): void
+    {
+        Schema::drop('playlist_playlist_folder');
+    }
 };

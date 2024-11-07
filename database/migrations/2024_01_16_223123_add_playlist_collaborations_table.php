@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('playlist_collaborators', static function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
+            $table->uuid('user_id');
             $table->string('playlist_id', 36);
             $table->timestamps();
         });
@@ -19,5 +19,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('playlist_id')->references('id')->on('playlists')->cascadeOnDelete()->cascadeOnUpdate();
         });
+    }
+
+    public function down(): void
+    {
+        Schema::drop('playlist_collaborators');
     }
 };

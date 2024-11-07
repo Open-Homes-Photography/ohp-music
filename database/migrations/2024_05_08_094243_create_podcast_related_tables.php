@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('explicit');
             $table->string('language');
             $table->json('metadata');
-            $table->unsignedInteger('added_by')->nullable();
+            $table->uuid('added_by')->nullable();
             $table->timestamp('last_synced_at');
             $table->timestamps();
         });
@@ -32,7 +32,7 @@ return new class extends Migration
         Schema::table('songs', static function (Blueprint $table): void {
             $table->unsignedInteger('artist_id')->nullable()->change();
             $table->unsignedInteger('album_id')->nullable()->change();
-            $table->unsignedInteger('owner_id')->nullable()->change();
+            $table->uuid('owner_id')->nullable()->change();
             $table->string('podcast_id', 36)->nullable();
             $table->string('episode_guid')->nullable()->unique();
             $table->json('episode_metadata')->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
 
         Schema::create('podcast_user', static function (Blueprint $table): void {
             $table->id();
-            $table->unsignedInteger('user_id');
+            $table->uuid('user_id');
             $table->string('podcast_id', 36);
             $table->json('state')->nullable();
             $table->timestamps();
@@ -52,5 +52,14 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('podcast_id')->references('id')->on('podcasts')->cascadeOnDelete();
         });
+    }
+
+    public function down(): void
+    {
+        Schema::table('songs', static function (Blueprint $table): void {
+            $table->dropForeign('songs_podcast_id_foreign');
+        });
+        Schema::drop('podcast_user');
+        Schema::drop('podcasts');
     }
 };

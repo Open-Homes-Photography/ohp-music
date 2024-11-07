@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::disableForeignKeyConstraints();
 
         Schema::table('playlist_song', static function (Blueprint $table): void {
-            $table->unsignedInteger('user_id')->nullable()->index();
+            $table->uuid('user_id')->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
@@ -25,7 +25,7 @@ return new class extends Migration {
         });
 
         Schema::table('playlist_song', static function (Blueprint $table): void {
-            $table->unsignedInteger('user_id')->nullable(false)->change();
+            $table->uuid('user_id')->nullable(false)->change();
         });
 
         Schema::enableForeignKeyConstraints();

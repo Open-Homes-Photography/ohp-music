@@ -10,7 +10,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('songs', static function (Blueprint $table): void {
-            $table->unsignedInteger('owner_id')->nullable();
+            $table->uuid('owner_id')->nullable();
             $table->foreign('owner_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->boolean('is_public')->default(false)->index();
         });

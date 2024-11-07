@@ -10,7 +10,7 @@ class CreateInteractionsTable extends Migration
     {
         Schema::create('interactions', static function (Blueprint $table): void {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
+            $table->uuid('user_id');
             $table->string('song_id', 32);
             $table->boolean('liked')->default(false);
             $table->integer('play_count')->default(0);
