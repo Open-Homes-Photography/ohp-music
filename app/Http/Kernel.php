@@ -16,9 +16,11 @@ use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class Kernel extends HttpKernel
 {
@@ -28,6 +30,7 @@ class Kernel extends HttpKernel
      * @var array<int,class-string>
      */
     protected $middleware = [
+        TrustProxies::class,
         CheckForMaintenanceMode::class,
         ValidatePostSize::class,
         TrimStrings::class,
@@ -50,7 +53,8 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
         ],
         'api' => [
-            'throttle:60,1',
+            EnsureFrontendRequestsAreStateful::class,
+            ThrottleRequests::class . ':api',
             SubstituteBindings::class,
         ],
     ];

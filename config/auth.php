@@ -33,7 +33,7 @@ return [
     */
     'guards' => [
         'web' => [
-            'driver' => 'token-via-query-parameter',
+            'driver' => 'session',
             'provider' => 'users',
         ],
         'api' => [

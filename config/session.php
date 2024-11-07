@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ return [
     |
     */
 
-    'lifetime' => 30 * 24 * 60,
+    'lifetime' => env('SESSION_LIFETIME', 120),
 
     'expire_on_close' => false,
 
@@ -43,7 +45,7 @@ return [
     |
     */
 
-    'encrypt' => true,
+    'encrypt' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +71,7 @@ return [
     |
     */
 
-    'connection' => null,
+    'connection' => env('SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,6 +85,8 @@ return [
     */
 
     'table' => 'sessions',
+
+    'store' => env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +112,10 @@ return [
     |
     */
 
-    'cookie' => 'remember_me_before_the_war',
+    'cookie' => env(
+        'SESSION_COOKIE',
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -134,7 +141,8 @@ return [
     |
     */
 
-    'domain' => null,
+    //'domain' => null,
+    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -147,5 +155,11 @@ return [
     |
     */
 
-    'secure' => false,
+    'secure' => env('SESSION_SECURE_COOKIE'),
+
+    'http_only' => true,
+
+    'same_site' => 'lax',
+
+    'partitioned' => false,
 ];

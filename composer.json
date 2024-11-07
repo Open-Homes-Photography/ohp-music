@@ -57,7 +57,8 @@
     "laravel/tinker": "^2.9",
     "larastan/larastan": "^2.9",
     "phlak/semver": "^5.0",
-    "laravel/prompts": "^0.1.25"
+    "laravel/prompts": "^0.1.25",
+    "laravel/sail": "^1.37"
   },
   "suggest": {
     "ext-zip": "Allow downloading multiple songs as Zip archives"
