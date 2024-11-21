@@ -113,10 +113,10 @@ onMounted(async () => {
   }
 
   // The app has just been initialized, check if we can get the user data with an already existing token
-  if (authService.hasApiToken()) {
-    triggerAppInitialization()
-    return
-  }
+  // if (authService.hasApiToken()) {
+  triggerAppInitialization()
+  // return
+  // }
 
   await resolveRoute()
 

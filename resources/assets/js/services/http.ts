@@ -1,8 +1,6 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import Axios from 'axios'
 import NProgress from 'nprogress'
-import { eventBus } from '@/utils/eventBus'
-import { authService } from '@/services/authService'
 
 class Http {
   client: AxiosInstance
@@ -20,7 +18,7 @@ class Http {
     // Intercept the request to make sure the token is injected into the header.
     this.client.interceptors.request.use((config: AxiosRequestConfig) => {
       this.silent || this.showLoadingIndicator()
-      config.headers.Authorization = `Bearer ${authService.getApiToken()}`
+      // config.headers.Authorization = `Bearer ${authService.getApiToken()}`
       return config
     })
 
@@ -31,8 +29,8 @@ class Http {
 
       // …get the tokens from the header if exist, and save them
       // This occurs during user updating password.
-      const token = response.headers.authorization
-      token && authService.setApiToken(token)
+      // const token = response.headers.authorization
+      // token && authService.setApiToken(token)
 
       return response
     }, (error: AxiosError) => {
@@ -44,7 +42,7 @@ class Http {
         // and we're not trying to log in
         if (!(error.config.method === 'post' && error.config.url === 'me')) {
           // the token must have expired. Log out.
-          eventBus.emit('LOG_OUT')
+          // eventBus.emit('LOG_OUT')
         }
       }
 
