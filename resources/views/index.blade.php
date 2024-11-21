@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Koel')
+@section('title', 'OHP Music')
 
 @push('scripts')
     <script>

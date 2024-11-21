@@ -15,6 +15,9 @@ import thumbCat from '../img/themes/thumbnails/cat.jpg'
 import bgDawn from '../img/themes/bg-dawn.jpg'
 import thumbDawn from '../img/themes/thumbnails/dawn.jpg'
 
+import bgOhp from '../img/themes/bg-ohp.jpg'
+import thumbOhp from '../img/themes/thumbnails/ohp.jpg'
+
 export default [
   {
     id: 'classic',
@@ -174,6 +177,7 @@ export default [
       '--color-bg-primary': '#031724',
       '--color-highlight': '#2896b8',
       '--bg-image': `url(${bgNemo})`,
+      '--font-family': 'system, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif',
     },
   },
   {
@@ -186,6 +190,21 @@ export default [
       '--color-bg-primary': '#000',
       '--color-highlight': '#d26c37',
       '--bg-image': `url(${bgCat})`,
+      '--bg-position': 'left',
+      '--font-family': 'Roboto',
+    },
+  },
+  {
+    id: 'ohp',
+    name: 'Open Homes Theme',
+    thumbnailColor: '#000',
+    thumbnailUrl: thumbOhp,
+    properties: {
+      '--color-bg-secondary': 'rgba(62, 73, 78, .85)',
+      '--color-bg-primary': '#000',
+      '--color-highlight': '#f1b044',
+      '--font-family': 'Plus Jakarta Sans',
+      '--bg-image': `url(${bgOhp})`,
       '--bg-position': 'left',
     },
   },

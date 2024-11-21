@@ -31,7 +31,7 @@ class PlaylistController extends Controller
 
     public function index()
     {
-        return PlaylistResource::collection($this->playlistRepository->getAllAccessibleByUser($this->user));
+        return PlaylistResource::collection($this->playlistRepository->getAllAccessibleByUser(request()->user()));
     }
 
     public function store(PlaylistStoreRequest $request)
@@ -46,7 +46,7 @@ class PlaylistController extends Controller
         try {
             $playlist = $this->playlistService->createPlaylist(
                 $request->name,
-                $this->user,
+                request()->user(),
                 $folder,
                 Arr::wrap($request->songs),
                 $request->rules ? SmartPlaylistRuleGroupCollection::create(Arr::wrap($request->rules)) : null,

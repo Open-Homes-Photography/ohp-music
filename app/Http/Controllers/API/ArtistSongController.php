@@ -20,6 +20,6 @@ class ArtistSongController extends Controller
 
     public function index(Artist $artist)
     {
-        return SongResource::collection($this->songRepository->getByArtist($artist, $this->user));
+        return SongResource::collection($this->songRepository->getByArtist($artist, request()->user()));
     }
 }

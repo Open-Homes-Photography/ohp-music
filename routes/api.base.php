@@ -79,7 +79,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
     Route::get('invitations', [UserInvitationController::class, 'get']);
     Route::post('invitations/accept', [UserInvitationController::class, 'accept']);
 
-    Route::middleware('auth:sanctum')->group(static function (): void {
+    Route::middleware('auth')->group(static function (): void {
         Route::get('one-time-token', GetOneTimeTokenController::class);
         Route::post('broadcasting/auth', static function (Request $request) {
             $pusher = new Pusher(

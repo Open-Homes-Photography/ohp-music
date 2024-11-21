@@ -18,12 +18,12 @@ class QueueStateController extends Controller
 
     public function show()
     {
-        return QueueStateResource::make($this->queueService->getQueueState($this->user));
+        return QueueStateResource::make($this->queueService->getQueueState(request()->user()));
     }
 
     public function update(UpdateQueueStateRequest $request)
     {
-        $this->queueService->updateQueueState($this->user, $request->songs);
+        $this->queueService->updateQueueState($request->user(), $request->songs);
 
         return response()->noContent();
     }

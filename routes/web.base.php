@@ -15,6 +15,10 @@ use App\Http\Controllers\ViewSongOnITunesController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
+Route::get('/login', static function () {
+    return redirect(config('auth.redirect_to'));
+})->name('login');
+
 Route::middleware('web')->group(static function (): void {
     Route::get('/', IndexController::class);
 

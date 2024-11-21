@@ -7,11 +7,11 @@ use Illuminate\Contracts\Support\Arrayable;
 
 final class PlaylistCollaborator implements Arrayable
 {
-    private function __construct(public int $id, public string $name, public string $avatar)
+    private function __construct(public string $id, public string $name, public string $avatar)
     {
     }
 
-    public static function make(int $id, string $name, string $avatar): self
+    public static function make(string $id, string $name, string $avatar): self
     {
         return new self($id, $name, $avatar);
     }

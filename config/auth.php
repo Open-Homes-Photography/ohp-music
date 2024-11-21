@@ -12,7 +12,7 @@ return [
     |
     */
     'defaults' => [
-        'guard' => 'api',
+        'guard' => env('DEFAULT_AUTH_GUARD', 'api'),
         'passwords' => 'users',
     ],
     /*
@@ -33,11 +33,16 @@ return [
     */
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver' => 'token-via-query-parameter',
             'provider' => 'users',
         ],
         'api' => [
             'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+        'ohp-auth' => [
+            'ohp_guard_name' => 'web', // auth guard used for login in other ohp projects
+            'driver' => 'ohp-session',
             'provider' => 'users',
         ],
     ],
@@ -93,4 +98,6 @@ return [
             'expire' => 60,
         ],
     ],
+
+    'redirect_to' => env('ATRIUM_APP_URL', '') . '/login',
 ];

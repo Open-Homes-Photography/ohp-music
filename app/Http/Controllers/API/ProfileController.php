@@ -27,7 +27,7 @@ class ProfileController extends Controller
 
     public function show()
     {
-        return UserResource::make($this->user);
+        return UserResource::make(request()->user());
     }
 
     public function update(ProfileUpdateRequest $request)
@@ -36,12 +36,12 @@ class ProfileController extends Controller
 
         // If the user is not using SSO, we need to verify their current password.
         throw_if(
-            !$this->user->is_sso && !$this->hash->check($request->current_password, $this->user->password),
+            !$request->user()->is_sso && !$this->hash->check($request->current_password, $request->user()->password),
             ValidationException::withMessages(['current_password' => 'Invalid current password'])
         );
 
         $user = $this->userService->updateUser(
-            user: $this->user,
+            user: $request->user(),
             name: $request->name,
             email: $request->email,
             password: $request->new_password,

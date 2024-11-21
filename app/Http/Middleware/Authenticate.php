@@ -2,20 +2,26 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class Authenticate
+class Authenticate extends Middleware
 {
-    public function handle(Request $request, Closure $next) // @phpcs:ignore
+    protected function redirectTo(Request $request): ?string
     {
-        if ($request->user()?->tokenCan('*')) {
-            return $next($request);
-        }
-
-        abort_if($request->ajax() || $request->wantsJson(), Response::HTTP_UNAUTHORIZED);
-
-        return redirect()->guest('/');
+        return $request->expectsJson() ? null : route('login');
     }
+
+    // public function handle(Request $request, Closure $next) // @phpcs:ignore
+    // {
+    //     // if ($request->user()?->tokenCan('*')) {
+    //     if (true) {
+    //         // dd('here');
+    //         return $next($request);
+    //     }
+
+    //     abort_if($request->ajax() || $request->wantsJson(), Response::HTTP_UNAUTHORIZED);
+
+    //     return redirect()->guest('/');
+    // }
 }

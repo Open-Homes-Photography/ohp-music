@@ -26,7 +26,7 @@ class PodcastController extends Controller
 
     public function index()
     {
-        return PodcastResourceCollection::make($this->podcastRepository->getAllByUser($this->user));
+        return PodcastResourceCollection::make($this->podcastRepository->getAllByUser(request()->user()));
     }
 
     public function store(PodcastStoreRequest $request)
@@ -34,7 +34,7 @@ class PodcastController extends Controller
         self::disableInDemo();
 
         try {
-            return PodcastResource::make($this->podcastService->addPodcast($request->url, $this->user));
+            return PodcastResource::make($this->podcastService->addPodcast($request->url, $request->user()));
         } catch (UserAlreadySubscribedToPodcast) {
             abort(Response::HTTP_CONFLICT, 'You have already subscribed to this podcast.');
         }

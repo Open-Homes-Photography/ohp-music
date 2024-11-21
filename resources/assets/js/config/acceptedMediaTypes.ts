@@ -1,4 +1,5 @@
 export const acceptedMediaTypes = [
+  'audio/wav',
   'audio/flac',
   'audio/mp3',
   'audio/mpeg',

@@ -25,7 +25,7 @@ class SettingController extends Controller
 
         Setting::set('media_path', rtrim(trim($request->media_path), '/'));
 
-        $this->mediaSyncService->scan(ScanConfiguration::make(owner: $this->user, makePublic: true));
+        $this->mediaSyncService->scan(ScanConfiguration::make(owner: $request->user(), makePublic: true));
 
         return response()->noContent();
     }

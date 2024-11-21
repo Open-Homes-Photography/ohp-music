@@ -29,6 +29,7 @@
   <LoginForm v-if="layout === 'auth'" @loggedin="onUserLoggedIn" />
 
   <AcceptInvitation v-if="layout === 'invitation'" />
+
   <ResetPasswordForm v-if="layout === 'reset-password'" />
 
   <AppInitializer v-if="authenticated" @error="onInitError" @success="onInitSuccess" />

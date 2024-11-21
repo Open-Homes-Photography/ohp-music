@@ -31,6 +31,7 @@
     <env name="BROADCAST_DRIVER" value="log"/>
     <env name="CACHE_MEDIA" value="true"/>
     <env name="MAIL_MAILER" value="log"/>
+    <env name="DEFAULT_AUTH_GUARD" value="api"/>
     <ini name="memory_limit" value="1024M"/>
   </php>
   <source>

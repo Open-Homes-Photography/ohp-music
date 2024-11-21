@@ -39,7 +39,7 @@ class SongController extends Controller
                 sortColumns: $request->sort ? explode(',', $request->sort) : ['songs.title'],
                 sortDirection: $request->order ?: 'asc',
                 ownSongsOnly: $request->boolean('own_songs_only'),
-                scopedUser: $this->user
+                scopedUser: $request->user()
             )
         );
     }
@@ -48,7 +48,7 @@ class SongController extends Controller
     {
         $this->authorize('access', $song);
 
-        return SongResource::make($this->songRepository->getOne($song->id, $this->user));
+        return SongResource::make($this->songRepository->getOne($song->id, request()->user()));
     }
 
     public function update(SongUpdateRequest $request)

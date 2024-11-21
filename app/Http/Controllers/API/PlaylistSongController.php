@@ -33,12 +33,15 @@ class PlaylistSongController extends Controller
     {
         if ($playlist->is_smart) {
             $this->authorize('own', $playlist);
-            return SongResource::collection($this->smartPlaylistService->getSongs($playlist, $this->user));
+            return SongResource::collection($this->smartPlaylistService->getSongs($playlist, request()->user()));
         }
 
         $this->authorize('collaborate', $playlist);
 
-        return self::createResourceCollection($this->songRepository->getByStandardPlaylist($playlist, $this->user));
+        return self::createResourceCollection($this->songRepository->getByStandardPlaylist(
+            $playlist,
+            request()->user()
+        ));
     }
 
     public function store(Playlist $playlist, AddSongsToPlaylistRequest $request)
@@ -47,10 +50,10 @@ class PlaylistSongController extends Controller
 
         $this->authorize('collaborate', $playlist);
 
-        $playables = $this->songRepository->getMany(ids: $request->songs, scopedUser: $this->user);
+        $playables = $this->songRepository->getMany(ids: $request->songs, scopedUser: $request->user());
 
         return self::createResourceCollection(
-            $this->playlistService->addPlayablesToPlaylist($playlist, $playables, $this->user)
+            $this->playlistService->addPlayablesToPlaylist($playlist, $playables, $request->user())
         );
     }
 

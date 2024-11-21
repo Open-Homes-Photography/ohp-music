@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'tagline' => 'Personal audio streaming service that works.',
+    'tagline' => 'Music library management.',
 
     'env' => env('APP_ENV', 'production'),
-    'name' => 'Koel',
+    'name' => env('APP_NAME', 'Koel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -31,6 +31,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
+    'atrium_url' => env('ATRIUM_APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------

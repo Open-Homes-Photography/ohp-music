@@ -10,11 +10,13 @@
 
     <meta name="theme-color" content="#282828">
     <meta name="msapplication-navbutton-color" content="#282828">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="manifest" href="{{ static_url('manifest.json') }}"/>
-    <meta name="msapplication-config" content="{{ static_url('browserconfig.xml') }}"/>
-    <link rel="icon" type="image/x-icon" href="{{ static_url('img/favicon.ico') }}"/>
-    <link rel="icon" href="{{ static_url('img/icon.png') }}">
+    <link rel="manifest" href="{{ static_url('manifest.json') }}" />
+    <meta name="msapplication-config" content="{{ static_url('browserconfig.xml') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ static_url('img/favicon.ico') }}" />
     <link rel="apple-touch-icon" href="{{ static_url('img/icon.png') }}">
 
     @unless(License::isPlus())
