@@ -10,6 +10,7 @@ use App\Http\Controllers\Download\DownloadSongsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LastfmController;
 use App\Http\Controllers\PlayController;
+use App\Http\Controllers\RegisterOhpController;
 use App\Http\Controllers\SSO\GoogleCallbackController;
 use App\Http\Controllers\ViewSongOnITunesController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware('web')->group(static function (): void {
     Route::get('/', IndexController::class);
 
     Route::get('remote', static fn () => view('remote'));
+
+    Route::get('/register-ohp', RegisterOhpController::class);
 
     Route::middleware('auth')->group(static function (): void {
         Route::prefix('lastfm')->group(static function (): void {
