@@ -11,7 +11,6 @@ use App\Models\Podcast;
 use App\Models\User;
 use App\Repositories\PodcastRepository;
 use App\Services\PodcastService;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Response;
 
 class PodcastController extends Controller
@@ -20,7 +19,6 @@ class PodcastController extends Controller
     public function __construct(
         private readonly PodcastService $podcastService,
         private readonly PodcastRepository $podcastRepository,
-        private readonly ?Authenticatable $user
     ) {
     }
 

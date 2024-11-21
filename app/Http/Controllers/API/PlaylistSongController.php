@@ -13,7 +13,6 @@ use App\Models\User;
 use App\Repositories\SongRepository;
 use App\Services\PlaylistService;
 use App\Services\SmartPlaylistService;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
@@ -25,7 +24,6 @@ class PlaylistSongController extends Controller
         private readonly SongRepository $songRepository,
         private readonly PlaylistService $playlistService,
         private readonly SmartPlaylistService $smartPlaylistService,
-        private readonly ?Authenticatable $user
     ) {
     }
 

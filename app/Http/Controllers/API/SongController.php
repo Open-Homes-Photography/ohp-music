@@ -17,7 +17,6 @@ use App\Repositories\SongRepository;
 use App\Services\LibraryManager;
 use App\Services\SongService;
 use App\Values\SongUpdateData;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class SongController extends Controller
 {
@@ -28,7 +27,6 @@ class SongController extends Controller
         private readonly AlbumRepository $albumRepository,
         private readonly ArtistRepository $artistRepository,
         private readonly LibraryManager $libraryManager,
-        private readonly ?Authenticatable $user
     ) {
     }
 

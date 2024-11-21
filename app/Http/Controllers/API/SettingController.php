@@ -8,14 +8,12 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Services\MediaScanner;
 use App\Values\ScanConfiguration;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class SettingController extends Controller
 {
     /** @param User $user */
     public function __construct(
         private readonly MediaScanner $mediaSyncService,
-        private readonly ?Authenticatable $user
     ) {
     }
 

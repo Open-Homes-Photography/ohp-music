@@ -7,12 +7,11 @@ use App\Http\Requests\API\UpdateQueueStateRequest;
 use App\Http\Resources\QueueStateResource;
 use App\Models\User;
 use App\Services\QueueService;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class QueueStateController extends Controller
 {
     /** @param User $user */
-    public function __construct(private readonly QueueService $queueService, private readonly ?Authenticatable $user)
+    public function __construct(private readonly QueueService $queueService)
     {
     }
 

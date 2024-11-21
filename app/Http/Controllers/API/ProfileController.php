@@ -8,7 +8,6 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\TokenManager;
 use App\Services\UserService;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -21,7 +20,6 @@ class ProfileController extends Controller
         private readonly Hasher $hash,
         private readonly UserService $userService,
         private readonly TokenManager $tokenManager,
-        private readonly ?Authenticatable $user
     ) {
     }
 

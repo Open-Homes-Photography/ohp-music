@@ -15,7 +15,7 @@ class AlbumController extends Controller
 
     public function index()
     {
-        return AlbumResource::collection($this->repository->paginate());
+        return AlbumResource::collection($this->repository->paginate(request()->user()));
     }
 
     public function show(Album $album)

@@ -9,14 +9,12 @@ use App\Http\Resources\PlaylistFolderResource;
 use App\Models\PlaylistFolder;
 use App\Models\User;
 use App\Services\PlaylistFolderService;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class PlaylistFolderController extends Controller
 {
     /** @param User $user */
     public function __construct(
         private readonly PlaylistFolderService $service,
-        private readonly ?Authenticatable $user
     ) {
     }
 
