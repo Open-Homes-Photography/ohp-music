@@ -20,6 +20,7 @@ use App\Http\Controllers\API\FetchOverviewController;
 use App\Http\Controllers\API\FetchRandomSongsInGenreController;
 use App\Http\Controllers\API\FetchRecentlyPlayedSongController;
 use App\Http\Controllers\API\FetchSongsForQueueController;
+use App\Http\Controllers\API\FetchUserFavoriteSongsController;
 use App\Http\Controllers\API\ForgotPasswordController;
 use App\Http\Controllers\API\GenreController;
 use App\Http\Controllers\API\GenreSongController;
@@ -131,6 +132,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
 
         Route::get('songs/recently-played', FetchRecentlyPlayedSongController::class);
         Route::get('songs/favorite', FetchFavoriteSongsController::class);
+        Route::get('songs/user-favorite/{user}', FetchUserFavoriteSongsController::class);
 
         Route::apiResource('playlist-folders', PlaylistFolderController::class);
         Route::apiResource('playlist-folders.playlists', PlaylistFolderPlaylistController::class)->except('destroy');

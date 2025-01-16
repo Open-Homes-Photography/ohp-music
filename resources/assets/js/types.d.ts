@@ -157,6 +157,7 @@ interface Playable {
   preloaded?: boolean
   playback_state?: PlaybackState
   liked: boolean
+  is_public: boolean
   fmt_length?: string
   created_at: string
 }

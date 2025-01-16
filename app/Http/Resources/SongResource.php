@@ -80,6 +80,8 @@ class SongResource extends JsonResource
             'year' => $this->song->year,
             'is_public' => $this->song->is_public,
             'created_at' => $this->song->created_at,
+            'download_path' => $this->song->path,
+            'storage_type' => $this->song->storage,
         ];
 
         if ($this->song->isEpisode()) {
