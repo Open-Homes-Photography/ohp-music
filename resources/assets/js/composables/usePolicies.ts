@@ -18,7 +18,7 @@ export const usePolicies = () => {
     },
 
     editPlaylist: (playlist: Playlist) => playlist.user_id === currentUser.value.id,
-    uploadSongs: () => isAdmin.value || isPlus.value,
+    uploadSongs: () => isAdmin.value,
     changeAlbumOrArtistThumbnails: () => isAdmin.value || isPlus.value, // for Plus, the logic is handled in the backend
   }
 

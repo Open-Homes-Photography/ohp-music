@@ -32,6 +32,7 @@
         <span class="title text-k-text-primary !flex gap-2 items-center">
           <ExternalMark v-if="external" class="!inline-block" />
           {{ playable.title }}
+          <span v-if="isPublic && !external" class="text-xs text-white rounded uppercase bg-yellow-500 p-2">public</span>
         </span>
         <span class="artist">{{ artist }}</span>
       </span>
@@ -81,6 +82,7 @@ const { item } = toRefs(props)
 
 const playable = computed<Playable | CollaborativeSong>(() => item.value.playable)
 const playing = computed(() => ['Playing', 'Paused'].includes(playable.value.playback_state!))
+const isPublic = computed(() => item.value.playable.is_public)
 
 const external = computed(() => {
   if (!isSong(playable.value)) {

@@ -1,7 +1,7 @@
 <template>
   <SidebarSection>
     <template #header>
-      <SidebarSectionHeader>Your Library</SidebarSectionHeader>
+      <SidebarSectionHeader>Song Library</SidebarSectionHeader>
     </template>
 
     <ul class="menu">

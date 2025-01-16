@@ -139,7 +139,7 @@ const makePublic = () => trigger(async () => {
   }
 
   await songStore.publicize(playables.value as Song[])
-  toastSuccess(`Unmarked ${pluralize(playables.value, 'song')} as private.`)
+  toastSuccess(`Marked ${pluralize(playables.value, 'song')} as public.`)
 })
 
 const makePrivate = () => trigger(async () => {
@@ -175,7 +175,7 @@ const visibilityActions = computed(() => {
   if (visibilities.length === 2) {
     return [
       {
-        label: 'Unmark as Private',
+        label: 'Make Public',
         handler: makePublic,
       },
       {
@@ -187,7 +187,7 @@ const visibilityActions = computed(() => {
 
   return visibilities[0] === 'public'
     ? [{ label: 'Mark as Private', handler: makePrivate }]
-    : [{ label: 'Unmark as Private', handler: makePublic }]
+    : [{ label: 'Make Public', handler: makePublic }]
 })
 
 const canBeRemovedFromPlaylist = computed(() => {
