@@ -34,10 +34,15 @@ class AuthServiceProvider extends ServiceProvider
             static function (Application $app, string $name, array $config) {
                 $provider = config('auth.providers.' . $config['provider']);
 
+                // Only use session if it's present (i.e. HTTP context)
+                $session = $app->bound('request') && $app->make('request')->hasSession()
+                    ? $app->make('request')->session()
+                    : $app->make('session.store'); // Fallback for non-HTTP environments
+
                 return new SessionGuard(
                     $config['ohp_guard_name'],
                     new EloquentUserProvider($app->make(Hasher::class), $provider['model']),
-                    $app->make('request')->session(),
+                    $session,
                 );
             }
         );
