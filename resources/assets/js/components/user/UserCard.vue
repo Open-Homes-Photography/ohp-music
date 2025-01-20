@@ -40,6 +40,9 @@
         </Btn>
         <Btn v-if="!isCurrentUser" danger small @click="destroy">Delete</Btn>
       </template>
+      <Btn v-if="isAdmin && !isCurrentUser" highlight small @click="userSongs">
+        Songs
+      </Btn>
     </div>
   </article>
 </template>
@@ -67,11 +70,13 @@ const { toastSuccess } = useMessageToaster()
 const { showConfirmDialog } = useDialogBox()
 const { go } = useRouter()
 
-const { currentUser } = useAuthorization()
+const { currentUser, isAdmin } = useAuthorization()
 
 const isCurrentUser = computed(() => user.value.id === currentUser.value.id)
 
 const edit = () => isCurrentUser.value ? go('profile') : eventBus.emit('MODAL_SHOW_EDIT_USER_FORM', user.value)
+
+const userSongs = () => go(`user-songs/${user.value.id}`)
 
 const destroy = async () => {
   if (!await showConfirmDialog(`Unperson ${user.value.name}?`)) {

@@ -32,12 +32,14 @@ class SongController extends Controller
 
     public function index(SongListRequest $request)
     {
+        $user = $request->user_id ? User::findOrFail($request->user_id) : $request->user();
+
         return SongResource::collection(
             $this->songRepository->getForListing(
                 sortColumns: $request->sort ? explode(',', $request->sort) : ['songs.title'],
                 sortDirection: $request->order ?: 'asc',
                 ownSongsOnly: $request->boolean('own_songs_only'),
-                scopedUser: $request->user()
+                scopedUser: $user
             )
         );
     }

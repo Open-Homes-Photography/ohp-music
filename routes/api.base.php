@@ -80,6 +80,8 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
     Route::get('invitations', [UserInvitationController::class, 'get']);
     Route::post('invitations/accept', [UserInvitationController::class, 'accept']);
 
+    Route::get('songs/user-favorite/{user}', FetchUserFavoriteSongsController::class);
+
     Route::middleware('auth')->group(static function (): void {
         Route::get('one-time-token', GetOneTimeTokenController::class);
         Route::post('broadcasting/auth', static function (Request $request) {
@@ -132,7 +134,7 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
 
         Route::get('songs/recently-played', FetchRecentlyPlayedSongController::class);
         Route::get('songs/favorite', FetchFavoriteSongsController::class);
-        Route::get('songs/user-favorite/{user}', FetchUserFavoriteSongsController::class);
+
 
         Route::apiResource('playlist-folders', PlaylistFolderController::class);
         Route::apiResource('playlist-folders.playlists', PlaylistFolderPlaylistController::class)->except('destroy');

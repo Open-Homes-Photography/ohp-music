@@ -14,6 +14,7 @@
     <HomeScreen v-show="screen === 'Home'" />
     <QueueScreen v-show="screen === 'Queue'" />
     <AllSongsScreen v-show="screen === 'Songs'" />
+    <UserAllSongsScreen v-show="screen === 'UserSongs'" />
     <AlbumListScreen v-show="screen === 'Albums'" />
     <ArtistListScreen v-show="screen === 'Artists'" />
     <PlaylistScreen v-show="screen === 'Playlist'" />
@@ -53,6 +54,7 @@ import AlbumListScreen from '@/components/screens/AlbumListScreen.vue'
 import ArtistListScreen from '@/components/screens/ArtistListScreen.vue'
 import GenreListScreen from '@/components/screens/GenreListScreen.vue'
 import AllSongsScreen from '@/components/screens/AllSongsScreen.vue'
+import UserAllSongsScreen from '@/components/screens/UserAllSongsScreen.vue'
 import PlaylistScreen from '@/components/screens/PlaylistScreen.vue'
 import FavoritesScreen from '@/components/screens/FavoritesScreen.vue'
 import RecentlyPlayedScreen from '@/components/screens/RecentlyPlayedScreen.vue'

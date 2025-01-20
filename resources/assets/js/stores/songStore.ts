@@ -44,6 +44,7 @@ export interface SongListPaginateParams extends Record<string, any> {
   order: SortOrder
   page: number
   own_songs_only: boolean
+  user_id?: string
 }
 
 export interface GenreSongListPaginateParams extends Record<string, any> {

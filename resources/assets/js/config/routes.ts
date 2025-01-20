@@ -26,6 +26,10 @@ export const routes: Route[] = [
     screen: 'Songs',
   },
   {
+    path: `/user-songs/(?<id>${UUID_REGEX})`,
+    screen: 'UserSongs',
+  },
+  {
     path: '/albums',
     screen: 'Albums',
   },

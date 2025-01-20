@@ -392,6 +392,7 @@ declare type ScreenName =
   | 'Default' | 'Blank'
   | 'Queue'
   | 'Songs'
+  | 'UserSongs'
   | 'Albums'
   | 'Artists'
   | 'Favorites'
