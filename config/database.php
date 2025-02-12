@@ -220,6 +220,14 @@ return [
                     'database' => '3',
                 ],
             ],
+            'cluster-sessions' => [
+                [
+                    'host' => env('REDIS_SESSIONS_HOST', '127.0.0.1'),
+                    'password' => env('REDIS_SESSIONS_PASSWORD', null),
+                    'port' => env('REDIS_SESSIONS_PORT', '6379'),
+                    'database' => env('REDIS_SESSIONS_DB', '0'),
+                ],
+            ],
         ],
 
         'default' => [
