@@ -230,6 +230,14 @@ return [
             ],
         ],
 
+        'sessions' => [
+            'url' => env('REDIS_SESSIONS_URL'),
+            'host' => env('REDIS_SESSIONS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_SESSIONS_PASSWORD', null),
+            'port' => env('REDIS_SESSIONS_PORT', '6379'),
+            'database' => env('REDIS_SESSIONS_DB', '0'),
+        ],
+
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
