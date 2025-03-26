@@ -64,7 +64,6 @@ const greetings = [
   'Howdy, %s!',
   'Yo!',
   'How’s it going, %s?',
-  'Sup, %s?',
   'How’s life, %s?',
   'How’s your day, %s?',
   'How have you been, %s?',
