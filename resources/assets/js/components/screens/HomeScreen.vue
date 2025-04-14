@@ -59,14 +59,7 @@ import ScreenBase from '@/components/screens/ScreenBase.vue'
 const { isAdmin } = useAuthorization()
 
 const greetings = [
-  'Oh hai!',
-  'Hey, %s!',
-  'Howdy, %s!',
-  'Yo!',
-  'How’s it going, %s?',
-  'How’s life, %s?',
-  'How’s your day, %s?',
-  'How have you been, %s?',
+  'Greetings, %s',
 ]
 
 const greeting = computed(() => userStore.current ? sample(greetings)!.replace('%s', userStore.current.name) : '')
