@@ -1,5 +1,5 @@
 <template>
-  <i class="relative flex gap-1 content-between w-[13px] aspect-square">
+  <i class="relative flex gap-1 content-between w-[14px] aspect-square">
     <span v-for="i in 3" :key="i" />
   </i>
 </template>

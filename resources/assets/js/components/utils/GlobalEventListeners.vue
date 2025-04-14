@@ -12,6 +12,7 @@ import { playlistFolderStore } from '@/stores/playlistFolderStore'
 import { playlistStore } from '@/stores/playlistStore'
 import { authService } from '@/services/authService'
 import { forceReloadWindow } from '@/utils/helpers'
+import { http } from '@/services/http'
 
 let toastSuccess: ReturnType<typeof useMessageToaster>['toastSuccess']
 let showConfirmDialog: ReturnType<typeof useDialogBox>['showConfirmDialog']
@@ -36,6 +37,7 @@ eventBus.on('PLAYLIST_DELETE', async playlist => {
     go('home')
   }
 }).on('LOG_OUT', async () => {
+  await http.post(`${window.ATRIUM_APP_URL}/logout`)
   await authService.logout()
   forceReloadWindow()
 })

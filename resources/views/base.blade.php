@@ -35,6 +35,8 @@
 
 <script>
     window.BASE_URL = @json(asset(''));
+    window.ATRIUM_APP_URL = '{{ config('app.atrium_url') }}';
+    window.MEDIA_APP_URL = '{{ config('app.media_url') }}';
     window.IS_DEMO = @json(config('koel.misc.demo'));
 
     window.PUSHER_APP_KEY = @json(config('broadcasting.connections.pusher.key'));

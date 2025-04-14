@@ -34,6 +34,8 @@ return [
 
     'atrium_url' => env('ATRIUM_APP_URL', 'http://localhost'),
 
+    'media_url' => env('MEDIA_APP_URL', 'http://localhost'),
+
     /*
     |--------------------------------------------------------------------------
     | Trusted hosts

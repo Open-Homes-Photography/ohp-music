@@ -66,6 +66,8 @@ type SSOProvider = 'Google' | 'Reverse Proxy'
 
 interface Window {
   BASE_URL: string
+  ATRIUM_APP_URL: string
+  MEDIA_APP_URL: string
   MAILER_CONFIGURED: boolean
   IS_DEMO: boolean
   SSO_PROVIDERS: SSOProvider[]

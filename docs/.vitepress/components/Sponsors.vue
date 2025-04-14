@@ -54,7 +54,7 @@ import whatTheDiffLogo from '../../assets/img/sponsors/what-the-diff.svg'
 div.sponsors {
   border-left: 1px solid var(--vp-c-divider);
   padding-left: 16px;
-  font-size: 13px;
+  font-size: 14px;
 
   h3 {
     font-size: 14px;
