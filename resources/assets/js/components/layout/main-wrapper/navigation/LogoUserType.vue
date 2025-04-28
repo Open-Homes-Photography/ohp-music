@@ -1,6 +1,6 @@
 <template>
   <div class="flex space-x-4 items-center">
-    <a href="#/home" class="">
+    <a :href="homePath" class="">
       <img src="@/../img/logo-oh.png" alt="Open Homes logo" class="h-[26px]">
     </a>
 
@@ -25,8 +25,8 @@ export default {
   },
   computed: {
     homePath () {
-      // TODO: update target
-      return this.userType === 'agent' ? '/dashboard' : '/admin/dashboard'
+      const APP_ATRIUM_OPEN_HOMES_URL = window.ATRIUM_APP_URL
+      return this.userType === 'agent' ? `${APP_ATRIUM_OPEN_HOMES_URL}/dashboard` : `${APP_ATRIUM_OPEN_HOMES_URL}/admin/dashboard`
     },
     userLegend () {
       // TODO: update target
