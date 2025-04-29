@@ -13,7 +13,7 @@
       <OrdersDropdown v-if="userAuthenticated" :is-admin="true" />
       <CustomersDropdown v-if="userAuthenticated" />
       <VisualArtistsDropdown v-if="userAuthenticated" />
-      <ToolsDropdown v-if="userAuthenticated && isSuperAdmin" :is-admin="isAdmin" :is-super-admin="isSuperAdmin" />
+      <ToolsDropdown v-if="userAuthenticated && isSuperAdmin" :is-admin="isAdmin" />
     </div>
 
     <div class="flex flex-row justify-end md:gap-4 gap-2 items-center pt-2 pr-2 md:pt-0 md:pr-0">
@@ -38,8 +38,7 @@ import { useAuthorization } from '@/composables/useAuthorization'
 const { isAdmin, currentUser } = useAuthorization()
 
 const isSuperAdmin = computed(() => {
-  return false
-  // return this.$store.getters.isSuperAdminUser;
+  return currentUser.value.is_admin
 })
 
 const userAuthenticated = computed(() => {
