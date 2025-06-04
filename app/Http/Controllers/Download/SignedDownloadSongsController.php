@@ -24,7 +24,7 @@ class SignedDownloadSongsController extends Controller
 
     protected function getFilename(Song $song)
     {
-        $title = $song->title ? mb_strtolower($song->title) : 'track';
+        $title = $song->title ?? 'track';
 
         $songPathInfo = pathinfo($song->path);
 
