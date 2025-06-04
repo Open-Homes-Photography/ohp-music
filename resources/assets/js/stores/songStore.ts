@@ -156,6 +156,11 @@ export const songStore = {
     return result
   },
 
+  getSignedDownloadUrl: async (song: Playable) => {
+    const response = await http.get<{ url: string }>(`songs/${song.id}/generate-signed-download`)
+    return response.url
+  },
+
   getSourceUrl: (playable: Playable) => {
     return isMobile.any && preferenceStore.transcode_on_mobile
       ? `${commonStore.state.cdn_url}play/${playable.id}/1?t=${authService.getAudioToken()}`

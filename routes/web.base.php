@@ -7,18 +7,25 @@ use App\Http\Controllers\Download\DownloadArtistController;
 use App\Http\Controllers\Download\DownloadFavoritesController;
 use App\Http\Controllers\Download\DownloadPlaylistController;
 use App\Http\Controllers\Download\DownloadSongsController;
+use App\Http\Controllers\Download\SignedDownloadSongsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LastfmController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\RegisterOhpController;
 use App\Http\Controllers\SSO\GoogleCallbackController;
 use App\Http\Controllers\ViewSongOnITunesController;
+use App\Models\Song;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/login', static function () {
     return redirect(config('auth.redirect_to'));
 })->name('login');
+
+Route::get(
+    'songs/{songId}/signed-download',
+    SignedDownloadSongsController::class
+)->where(['songId' => Song::ID_REGEX])->name('signed-song-download')->middleware('signed');
 
 Route::middleware('web')->group(static function (): void {
     Route::get('/', IndexController::class);

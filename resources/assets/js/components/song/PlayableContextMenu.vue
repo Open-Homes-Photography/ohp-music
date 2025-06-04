@@ -56,6 +56,7 @@
 
     <li v-if="canEditSongs" @click="openEditForm">Edit…</li>
     <li v-if="downloadable" @click="download">Download</li>
+    <li v-if="downloadable" @click="copySignedDownloadUrl">Copy Signed Download URL</li>
     <li v-if="onlyOneSongSelected && canBeShared" @click="copyUrl">Copy Shareable URL</li>
 
     <template v-if="canBeRemovedFromPlaylist">
@@ -247,6 +248,12 @@ const removeFromFavorites = () => trigger(() => favoriteStore.unlike(playables.v
 
 const copyUrl = () => trigger(async () => {
   await copyText(songStore.getShareableUrl(playables.value[0]))
+  toastSuccess('URL copied to clipboard.')
+})
+
+const copySignedDownloadUrl = () => trigger(async () => {
+  const url = await songStore.getSignedDownloadUrl(playables.value[0])
+  await copyText(url)
   toastSuccess('URL copied to clipboard.')
 })
 

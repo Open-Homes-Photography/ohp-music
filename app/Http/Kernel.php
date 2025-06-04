@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
 use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'bindings' => SubstituteBindings::class,
         'can' => Authorize::class,
         'throttle' => ThrottleRequests::class,
+        'signed' => ValidateSignature::class,
     ];
 }

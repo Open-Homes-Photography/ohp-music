@@ -61,6 +61,7 @@ use App\Http\Controllers\API\UploadArtistImageController;
 use App\Http\Controllers\API\UploadController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\UserInvitationController;
+use App\Http\Controllers\Download\SignedDownloadSongsController;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,11 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
     Route::post('invitations/accept', [UserInvitationController::class, 'accept']);
 
     Route::get('songs/user-favorite/{user}', FetchUserFavoriteSongsController::class);
+
+    Route::get(
+        'songs/{songId}/generate-signed-download',
+        [SignedDownloadSongsController::class, 'generateUrl']
+    )->where(['songId' => Song::ID_REGEX]);
 
     Route::middleware('auth')->group(static function (): void {
         Route::get('one-time-token', GetOneTimeTokenController::class);
