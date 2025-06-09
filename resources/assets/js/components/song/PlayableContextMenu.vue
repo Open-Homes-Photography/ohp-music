@@ -56,7 +56,7 @@
 
     <li v-if="canEditSongs" @click="openEditForm">Edit…</li>
     <li v-if="downloadable" @click="download">Download</li>
-    <li v-if="downloadable" @click="copySignedDownloadUrl">Copy Signed Download URL</li>
+    <li v-if="downloadable" @click="copySignedDownloadUrl">Copy URL for Editors</li>
     <li v-if="onlyOneSongSelected && canBeShared" @click="copyUrl">Copy Shareable URL</li>
 
     <template v-if="canBeRemovedFromPlaylist">
