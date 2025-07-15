@@ -1,6 +1,6 @@
 <template>
   <nav class="flex items-center gap-x-6 text-white bg-[#386878] md:h-16 py-2.5 px-0 md:px-[16px]">
-    <LogoUserType user-type="cx" />
+    <LogoUserType :user-type="isAdmin ? 'cx' : 'agent'" />
 
     <button
       type="button" class="navbar-toggler collapsed pt-2 md:pt-0" data-toggle="collapse"
@@ -9,12 +9,13 @@
       <span class="navbar-toggler-icon" />
     </button>
 
-    <div v-if="userAuthenticated" class="hidden items-center gap-x-6 md:flex flex-row grow divide-y divide-brand-gray-100 md:divide-none">
+    <div v-if="userAuthenticated && isAdmin" class="hidden items-center gap-x-6 md:flex flex-row grow divide-y divide-brand-gray-100 md:divide-none">
       <OrdersDropdown v-if="userAuthenticated" :is-admin="true" />
       <CustomersDropdown v-if="userAuthenticated" />
       <VisualArtistsDropdown v-if="userAuthenticated" />
       <ToolsDropdown v-if="userAuthenticated && isSuperAdmin" :is-admin="isAdmin" />
     </div>
+    <div v-else class="md:flex flex-row grow" />
 
     <div class="flex flex-row justify-end md:gap-4 gap-2 items-center pt-2 pr-2 md:pt-0 md:pr-0">
       <UserNotification v-if="userAuthenticated" :user-id="userId" />
