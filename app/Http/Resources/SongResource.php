@@ -27,6 +27,7 @@ class SongResource extends JsonResource
         'genre',
         'year',
         'disc',
+        'keywords',
         'is_public',
         'created_at',
     ];
@@ -79,6 +80,7 @@ class SongResource extends JsonResource
             'genre' => $this->song->genre,
             'year' => $this->song->year,
             'is_public' => $this->song->is_public,
+            'keywords' => $this->song->keywords,
             'created_at' => $this->song->created_at,
             'download_path' => $this->song->storage_metadata->getPath(),
             'storage_type' => $this->song->storage,

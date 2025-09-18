@@ -17,6 +17,7 @@ final class SongUpdateData implements Arrayable
         public ?string $genre,
         public ?int $year,
         public ?string $lyrics,
+        public ?array $keywords,
     ) {
         $this->albumArtistName = $this->albumArtistName ?: $this->artistName;
     }
@@ -33,6 +34,7 @@ final class SongUpdateData implements Arrayable
             genre: $request->input('data.genre'),
             year: (int) $request->input('data.year'),
             lyrics: $request->input('data.lyrics'),
+            keywords: explode(',', $request->input('data.keywords')), // TODO: trim spaces
         );
     }
 
@@ -45,7 +47,8 @@ final class SongUpdateData implements Arrayable
         ?int $disc,
         ?string $genre,
         ?int $year,
-        ?string $lyrics
+        ?string $lyrics,
+        ?array $keywords
     ): self {
         return new self(
             $title,
@@ -57,6 +60,7 @@ final class SongUpdateData implements Arrayable
             $genre,
             $year,
             $lyrics,
+            $keywords,
         );
     }
 
@@ -73,6 +77,7 @@ final class SongUpdateData implements Arrayable
             'genre' => $this->genre,
             'year' => $this->year,
             'lyrics' => $this->lyrics,
+            'keywords' => $this->keywords,
         ];
     }
 }

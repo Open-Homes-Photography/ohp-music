@@ -178,6 +178,7 @@ interface Song extends Playable {
   track: number | null
   disc: number | null
   year: number | null
+  keywords: string[]
   lyrics: string
   is_public: boolean
   deleted?: boolean

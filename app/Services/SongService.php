@@ -78,6 +78,8 @@ class SongService
         $song->genre = $data->genre;
         $song->year = $data->year;
 
+        $song->keywords = $data->keywords;
+
         $song->push();
 
         return $this->songRepository->getOne($song->id);

@@ -27,6 +27,7 @@ export interface SongUpdateData {
   year?: number | null
   genre?: string
   visibility?: 'public' | 'private' | 'unchanged'
+  keywords: string[]
 }
 
 export interface SongUpdateResult {

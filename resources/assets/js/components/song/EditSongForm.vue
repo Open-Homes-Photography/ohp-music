@@ -135,6 +135,16 @@
               />
             </FormRow>
           </FormRow>
+
+          <FormRow>
+            <template #label>Keywords</template>
+            <TextInput
+              v-model="formData.keywords"
+              :placeholder="inputPlaceholder"
+              data-testid="keywords-input"
+              name="keywords"
+            />
+          </FormRow>
         </TabPanel>
 
         <TabPanel
@@ -222,6 +232,7 @@ const formData = reactive<SongUpdateData>({
   disc: allSongsShareSameValue('disc') && songs[0].disc !== 0 ? songs[0].disc : null,
   year: allSongsShareSameValue('year') ? songs[0].year : null,
   genre: allSongsShareSameValue('genre') ? songs[0].genre : '',
+  keywords: songs[0].keywords,
 })
 
 // If the album artist(s) is the same as the artist(s), we set the form value as empty to not confuse the user

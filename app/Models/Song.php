@@ -54,6 +54,7 @@ use Throwable;
  * @property User $owner
  * @property-read SongStorageMetadata $storage_metadata
  * @property SongStorageType $storage
+ * @property array $keywords
  *
  * // The following are only available for collaborative playlists
  * @property-read ?string $collaborator_email The email of the user who added the song to the playlist
@@ -91,6 +92,7 @@ class Song extends Model
         'is_public' => 'bool',
         'storage' => SongStorageCast::class,
         'episode_metadata' => EpisodeMetadataCast::class,
+        'keywords' => 'array',
     ];
 
     protected $with = ['album', 'artist', 'podcast'];
