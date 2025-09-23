@@ -210,7 +210,8 @@ class Song extends Model
         $array = [
             'id' => $this->id,
             'title' => $this->title,
-            'type' => $this->type->value,
+            // 'type' => $this->type->value,
+            'keywords' => $this->keywords,
         ];
 
         if ($this->episode_metadata?->description) {
