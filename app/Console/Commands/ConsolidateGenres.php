@@ -47,10 +47,10 @@ class ConsolidateGenres extends Command
                     continue;
                 }
 
-                $song->keywords = $this->getKeywords($song);
+                $song->keywords = $this->getKeywords($data[3]);
                 $song->genre = $data[4];
 
-                // dump($song->keywords, $song->genre);
+                // dump($song->keywords, $song->genre, $data[3]);
                 $song->save();
             }
 
@@ -62,8 +62,8 @@ class ConsolidateGenres extends Command
      *
      * @return array<string>
      */
-    protected function getKeywords(Song $song): array
+    protected function getKeywords($oldGenre): array
     {
-        return collect(explode(',', $song->genre))->map(static fn ($word) => strtolower(trim($word)))->filter()->all();
+        return collect(explode(',', $oldGenre))->map(static fn ($word) => strtolower(trim($word)))->filter()->all();
     }
 }
