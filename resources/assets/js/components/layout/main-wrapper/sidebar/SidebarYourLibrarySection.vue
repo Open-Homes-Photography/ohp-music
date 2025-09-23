@@ -38,12 +38,18 @@
         </template>
         Podcasts
       </SidebarItem>
+      <SidebarItem href="#/keywords" screen="Keywords">
+        <template #icon>
+          <Icon :icon="faTags" fixed-width />
+        </template>
+        Keywords
+      </SidebarItem>
     </ul>
   </SidebarSection>
 </template>
 
 <script lang="ts" setup>
-import { faCompactDisc, faMusic, faPodcast } from '@fortawesome/free-solid-svg-icons'
+import { faCompactDisc, faMusic, faPodcast, faTags } from '@fortawesome/free-solid-svg-icons'
 import { GuitarIcon, MicVocalIcon } from 'lucide-vue-next'
 import { unescape } from 'lodash'
 import { ref } from 'vue'

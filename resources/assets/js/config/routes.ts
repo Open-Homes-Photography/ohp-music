@@ -123,6 +123,14 @@ export const routes: Route[] = [
     screen: 'Podcast',
   },
   {
+    path: '/keywords',
+    screen: 'Keywords',
+  },
+  {
+    path: `/keywords/(?<name>\.+)`,
+    screen: 'Keyword',
+  },
+  {
     path: '/episodes/(?<id>\.+)',
     screen: 'Episode',
   },

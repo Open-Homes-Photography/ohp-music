@@ -18,6 +18,7 @@ use App\Http\Controllers\API\FetchFavoriteSongsController;
 use App\Http\Controllers\API\FetchInitialDataController;
 use App\Http\Controllers\API\FetchOverviewController;
 use App\Http\Controllers\API\FetchRandomSongsInGenreController;
+use App\Http\Controllers\API\FetchRandomSongsInKeywordController;
 use App\Http\Controllers\API\FetchRecentlyPlayedSongController;
 use App\Http\Controllers\API\FetchSongsForQueueController;
 use App\Http\Controllers\API\FetchUserFavoriteSongsController;
@@ -25,6 +26,8 @@ use App\Http\Controllers\API\ForgotPasswordController;
 use App\Http\Controllers\API\GenreController;
 use App\Http\Controllers\API\GenreSongController;
 use App\Http\Controllers\API\GetOneTimeTokenController;
+use App\Http\Controllers\API\KeywordController;
+use App\Http\Controllers\API\KeywordSongController;
 use App\Http\Controllers\API\LambdaSongController as S3SongController;
 use App\Http\Controllers\API\LikeMultipleSongsController;
 use App\Http\Controllers\API\MovePlaylistSongsController;
@@ -158,6 +161,11 @@ Route::prefix('api')->middleware('api')->group(static function (): void {
         Route::get('genres/{genre}/songs', GenreSongController::class)->where('genre', '.*');
         Route::get('genres/{genre}/songs/random', FetchRandomSongsInGenreController::class)->where('genre', '.*');
         Route::apiResource('genres', GenreController::class)->where(['genre' => '.*']);
+
+        Route::get('keywords/{keyword}/songs', KeywordSongController::class)->where('keyword', '.*');
+        Route::get('keywords/{keyword}/songs/random', FetchRandomSongsInKeywordController::class)
+            ->where('keyword', '.*');
+        Route::apiResource('keywords', KeywordController::class)->where(['keyword' => '.*']);
 
         Route::apiResource('users', UserController::class);
 

@@ -22,10 +22,11 @@
     <RecentlyPlayedScreen v-show="screen === 'RecentlyPlayed'" />
     <UploadScreen v-show="screen === 'Upload'" />
     <SearchExcerptsScreen v-show="screen === 'Search.Excerpt'" />
-    <GenreScreen v-show="screen === 'Genre'" />
     <PodcastListScreen v-show="screen === 'Podcasts'" />
-
     <GenreListScreen v-if="screen === 'Genres'" />
+    <GenreScreen v-if="screen === 'Genre'" />
+    <KeywordListScreen v-if="screen === 'Keywords'" />
+    <KeywordScreen v-if="screen === 'Keyword'" />
     <SearchSongResultsScreen v-if="screen === 'Search.Songs'" />
     <AlbumScreen v-if="screen === 'Album'" />
     <ArtistScreen v-if="screen === 'Artist'" />
@@ -53,6 +54,7 @@ import QueueScreen from '@/components/screens/QueueScreen.vue'
 import AlbumListScreen from '@/components/screens/AlbumListScreen.vue'
 import ArtistListScreen from '@/components/screens/ArtistListScreen.vue'
 import GenreListScreen from '@/components/screens/GenreListScreen.vue'
+import KeywordListScreen from '@/components/screens/KeywordListScreen.vue'
 import AllSongsScreen from '@/components/screens/AllSongsScreen.vue'
 import UserAllSongsScreen from '@/components/screens/UserAllSongsScreen.vue'
 import PlaylistScreen from '@/components/screens/PlaylistScreen.vue'
@@ -67,6 +69,7 @@ const AlbumArtOverlay = defineAsyncComponent(() => import('@/components/ui/Album
 const AlbumScreen = defineAsyncComponent(() => import('@/components/screens/AlbumScreen.vue'))
 const ArtistScreen = defineAsyncComponent(() => import('@/components/screens/ArtistScreen.vue'))
 const GenreScreen = defineAsyncComponent(() => import('@/components/screens/GenreScreen.vue'))
+const KeywordScreen = defineAsyncComponent(() => import('@/components/screens/KeywordScreen.vue'))
 const PodcastScreen = defineAsyncComponent(() => import('@/components/screens/PodcastScreen.vue'))
 const EpisodeScreen = defineAsyncComponent(() => import('@/components/screens/EpisodeScreen.vue'))
 const SettingsScreen = defineAsyncComponent(() => import('@/components/screens/SettingsScreen.vue'))

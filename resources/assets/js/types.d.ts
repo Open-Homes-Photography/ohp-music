@@ -413,6 +413,8 @@ declare type ScreenName =
   | 'Upload'
   | 'Podcasts'
   | 'Podcast'
+  | 'Keywords'
+  | 'Keyword'
   | 'Episode'
   | 'Search.Excerpt'
   | 'Search.Songs'
@@ -470,7 +472,7 @@ interface PlayableListConfig {
 
 interface PlayableListContext {
   entity?: Playlist | Album | Artist | Genre
-  type?: Extract<ScreenName, 'Songs' | 'Album' | 'Artist' | 'Playlist' | 'Favorites' | 'RecentlyPlayed' | 'Queue' | 'Genre' | 'Search.Songs'>
+  type?: Extract<ScreenName, 'Songs' | 'Album' | 'Artist' | 'Playlist' | 'Favorites' | 'RecentlyPlayed' | 'Queue' | 'Genre' | 'Keyword' | 'Search.Songs'>
 }
 
 type PlayableListSortField =
@@ -506,6 +508,13 @@ interface ToastMessage {
 
 interface Genre {
   type: 'genres'
+  name: string
+  song_count: number
+  length: number
+}
+
+interface Keyword {
+  type: 'keywords'
   name: string
   song_count: number
   length: number

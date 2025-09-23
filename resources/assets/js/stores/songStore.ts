@@ -54,6 +54,12 @@ export interface GenreSongListPaginateParams extends Record<string, any> {
   page: number
 }
 
+export interface KeywordSongListPaginateParams extends Record<string, any> {
+  sort: MaybeArray<PlayableListSortField>
+  order: SortOrder
+  page: number
+}
+
 export const songStore = {
   vault: new Map<Playable['id'], Playable>(),
 
@@ -249,6 +255,26 @@ export const songStore = {
       [`podcast.episodes`, id],
       async () => this.syncWithVault(await http.get<Episode[]>(`podcasts/${id}/episodes${refresh ? '?refresh=1' : ''}`)),
     )
+  },
+
+  async paginateForKeyword (keyword: Keyword | Keyword['name'], params: KeywordSongListPaginateParams) {
+    const name = typeof keyword === 'string' ? keyword : keyword.name
+
+    const resource = await http.get<PaginatorResource<Song>>(
+      `keywords/${name}/songs?${new URLSearchParams(params).toString()}`,
+    )
+
+    const songs = this.syncWithVault(resource.data)
+
+    return {
+      songs,
+      nextPage: resource.links.next ? ++resource.meta.current_page : null,
+    }
+  },
+
+  async fetchRandomForKeyword (keyword: Keyword | Keyword['name'], limit = 500) {
+    const name = typeof keyword === 'string' ? keyword : keyword.name
+    return this.syncWithVault(await http.get<Song[]>(`keywords/${name}/songs/random?limit=${limit}`))
   },
 
   async paginateForGenre (genre: Genre | Genre['name'], params: GenreSongListPaginateParams) {

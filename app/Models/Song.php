@@ -18,6 +18,7 @@ use App\Values\SongStorageMetadata\SftpMetadata;
 use App\Values\SongStorageMetadata\SongStorageMetadata;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -92,7 +93,7 @@ class Song extends Model
         'is_public' => 'bool',
         'storage' => SongStorageCast::class,
         'episode_metadata' => EpisodeMetadataCast::class,
-        'keywords' => 'array',
+        'keywords' => AsCollection::class,
     ];
 
     protected $with = ['album', 'artist', 'podcast'];

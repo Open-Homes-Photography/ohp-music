@@ -12,6 +12,7 @@ use App\Models\Podcast;
 use App\Models\Song;
 use App\Models\User;
 use App\Values\Genre;
+use App\Values\Keyword;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
@@ -96,6 +97,41 @@ class SongRepository extends Repository
             ->where('genre', $genre)
             ->sort($sortColumns, $sortDirection)
             ->simplePaginate($perPage);
+    }
+
+    public function getByKeyword(
+        string $keyword,
+        array $sortColumns,
+        string $sortDirection,
+        ?User $scopedUser = null,
+        int $perPage = 50
+    ): Paginator {
+        $query = Song::query(type: PlayableType::SONG, user: $scopedUser ?? $this->auth->user())
+            ->accessible()
+            ->withMeta()
+            ->sort($sortColumns, $sortDirection);
+
+        if ($keyword === Keyword::NO_KEYWORDS || !$keyword) {
+            $query->where(static function ($q): void {
+                $q->where('keywords', '[]')->orWhereNull('keywords');
+            });
+        } else {
+            $query->whereJsonContains('keywords', $keyword);
+        }
+
+        return $query->simplePaginate($perPage);
+    }
+
+    /** @return Collection|array<array-key, Song> */
+    public function getRandomByKeyword(string $keyword, int $limit, ?User $scopedUser = null): Collection
+    {
+        return Song::query(type: PlayableType::SONG, user: $scopedUser ?? $this->auth->user())
+            ->accessible()
+            ->withMeta()
+            ->whereJsonContains('keywords', $keyword)
+            ->limit($limit)
+            ->inRandomOrder()
+            ->get();
     }
 
     /** @return Collection|array<array-key, Song> */
