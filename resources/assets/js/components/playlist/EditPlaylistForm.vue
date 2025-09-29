@@ -24,6 +24,13 @@
             <option v-for="folder in folders" :key="folder.id" :value="folder.id">{{ folder.name }}</option>
           </SelectBox>
         </FormRow>
+        <FormRow>
+          <div>
+            <CheckBox v-model="isPublic" name="is_public" />
+            Allow public read only access
+            <TooltipIcon title="All users will be able to view this playlist's tracks but not edit them or add/remove new tracks." />
+          </div>
+        </FormRow>
       </FormRow>
     </main>
 
@@ -48,6 +55,8 @@ import Btn from '@/components/ui/form/Btn.vue'
 import TextInput from '@/components/ui/form/TextInput.vue'
 import FormRow from '@/components/ui/form/FormRow.vue'
 import SelectBox from '@/components/ui/form/SelectBox.vue'
+import CheckBox from '@/components/ui/form/CheckBox.vue'
+import TooltipIcon from '@/components/ui/TooltipIcon.vue'
 
 const emit = defineEmits<{ (e: 'close'): void }>()
 
@@ -59,6 +68,7 @@ const playlist = useModal().getFromContext<Playlist>('playlist')
 const name = ref(playlist.name)
 const folderId = ref(playlist.folder_id)
 const folders = toRef(playlistFolderStore.state, 'folders')
+const isPublic = ref(playlist.is_public)
 
 const close = () => emit('close')
 
@@ -69,6 +79,7 @@ const submit = async () => {
     await playlistStore.update(playlist, {
       name: name.value,
       folder_id: folderId.value,
+      is_public: isPublic.value,
     })
 
     toastSuccess('Playlist updated.')

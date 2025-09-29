@@ -34,7 +34,9 @@ class PlaylistSongController extends Controller
             return SongResource::collection($this->smartPlaylistService->getSongs($playlist, request()->user()));
         }
 
-        $this->authorize('collaborate', $playlist);
+        if (!$playlist->is_public) {
+            $this->authorize('collaborate', $playlist);
+        }
 
         return self::createResourceCollection($this->songRepository->getByStandardPlaylist(
             $playlist,

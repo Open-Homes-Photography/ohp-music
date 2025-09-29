@@ -64,7 +64,8 @@ class PlaylistService
         string $name,
         ?Folder $folder = null,
         ?SmartPlaylistRuleGroupCollection $ruleGroups = null,
-        bool $ownSongsOnly = false
+        bool $ownSongsOnly = false,
+        bool $isPublic = false
     ): Playlist {
         if ($folder) {
             Assert::true($playlist->ownedBy($folder->user), 'The playlist folder does not belong to the user');
@@ -78,6 +79,7 @@ class PlaylistService
             'name' => $name,
             'rules' => $ruleGroups,
             'own_songs_only' => $ownSongsOnly,
+            'is_public' => $isPublic,
         ]);
 
         $folder?->playlists()->syncWithoutDetaching($playlist);
@@ -146,5 +148,17 @@ class PlaylistService
 
             $playlist->playables()->syncWithoutDetaching($values);
         });
+    }
+
+    public function markPlaylistAsPublic(Playlist $playlist): void
+    {
+        $this->makePlaylistContentPublic($playlist);
+
+        $playlist->update(['is_public' => true]);
+    }
+
+    public function markPlaylistAsPrivate(Playlist $playlist): void
+    {
+        $playlist->update(['is_public' => false]);
     }
 }

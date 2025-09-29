@@ -29,6 +29,7 @@ use Laravel\Scout\Searchable;
  * @property ?SmartPlaylistRuleGroupCollection $rules
  * @property Carbon $created_at
  * @property bool $own_songs_only
+ * @property bool $is_public
  * @property Collection<array-key, User> $collaborators
  * @property-read bool $is_collaborative
  * @property-read ?string $cover The playlist cover's URL
@@ -47,6 +48,7 @@ class Playlist extends Model
     protected $casts = [
         'rules' => SmartPlaylistRulesCast::class,
         'own_songs_only' => 'bool',
+        'is_public' => 'bool',
     ];
 
     protected $appends = ['is_smart'];

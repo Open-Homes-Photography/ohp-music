@@ -36,7 +36,7 @@ const { currentUserCan } = usePolicies()
 const playlist = ref<Playlist>()
 
 const canEditPlaylist = computed(() => currentUserCan.editPlaylist(playlist.value!))
-const canShowCollaboration = computed(() => isPlus.value && !playlist.value?.is_smart)
+const canShowCollaboration = computed(() => isPlus.value && canEditPlaylist.value && !playlist.value?.is_smart)
 
 const edit = () => trigger(() => eventBus.emit('MODAL_SHOW_EDIT_PLAYLIST_FORM', playlist.value!))
 const destroy = () => trigger(() => eventBus.emit('PLAYLIST_DELETE', playlist.value!))

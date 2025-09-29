@@ -196,7 +196,10 @@ const canBeRemovedFromPlaylist = computed(() => {
     return false
   }
   const playlist = playlistStore.byId(getRouteParam('id')!)
-  return playlist && !playlist.is_smart
+  if (playlist && currentUserCan.editPlaylist(playlist)) {
+    return !playlist.is_smart
+  }
+  return false
 })
 
 const isQueueScreen = computed(() => isCurrentScreen('Queue'))

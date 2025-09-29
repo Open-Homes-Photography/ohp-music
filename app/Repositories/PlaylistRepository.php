@@ -14,8 +14,10 @@ class PlaylistRepository extends Repository
     public function getAllAccessibleByUser(User $user): Collection
     {
         $ownPlaylists = Playlist::query()
-            ->where('playlists.user_id', $user->id)
-            ->leftJoin('playlist_playlist_folder', 'playlists.id', '=', 'playlist_playlist_folder.playlist_id')
+            ->where(static function ($query) use ($user): void {
+                $query->where('playlists.user_id', $user->id);
+                $query->orWhere('playlists.is_public', true);
+            })->leftJoin('playlist_playlist_folder', 'playlists.id', '=', 'playlist_playlist_folder.playlist_id')
             ->get(['playlists.*', 'playlist_playlist_folder.folder_id']);
 
         if (License::isCommunity()) {

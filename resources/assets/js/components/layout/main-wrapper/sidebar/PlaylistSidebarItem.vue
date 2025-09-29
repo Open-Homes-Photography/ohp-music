@@ -17,7 +17,7 @@
       <Icon v-else-if="list.is_collaborative" :icon="faUsers" fixed-width />
       <ListMusicIcon v-else :size="16" />
     </template>
-    {{ list.name }}
+    {{ list.name }} <span v-if="isPublicPlaylist" class="inline-block text-xs text-white rounded uppercase bg-yellow-500 p-2 ml-2">public</span>
   </SidebarItem>
 </template>
 
@@ -47,6 +47,7 @@ const { list } = toRefs(props)
 const isPlaylist = (list: PlaylistLike): list is Playlist => 'id' in list
 const isFavoriteList = (list: PlaylistLike): list is FavoriteList => list.name === 'Favorites'
 const isRecentlyPlayedList = (list: PlaylistLike): list is RecentlyPlayedList => list.name === 'Recently Played'
+const isPublicPlaylist = isPlaylist(list.value) && list.value.is_public
 
 const current = ref(false)
 

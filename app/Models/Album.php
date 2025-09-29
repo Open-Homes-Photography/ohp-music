@@ -116,7 +116,9 @@ class Album extends Model
      */
     protected function name(): Attribute
     {
-        return Attribute::get(static fn (string $value) => html_entity_decode($value))->shouldCache();
+        return Attribute::get(
+            static fn (?string $value) => html_entity_decode($value ?? '')
+        )->shouldCache();
     }
 
     protected function thumbnailName(): Attribute
@@ -158,8 +160,8 @@ class Album extends Model
             'name' => $this->name,
         ];
 
-        if (!$this->artist->is_unknown && !$this->artist->is_various) {
-            $array['artist'] = $this->artist->name;
+        if (!$this->artist?->is_unknown && !$this->artist?->is_various) {
+            $array['artist'] = $this->artist?->name;
         }
 
         return $array;
