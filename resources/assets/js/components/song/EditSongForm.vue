@@ -139,7 +139,7 @@
           <FormRow>
             <template #label>Keywords</template>
             <TextInput
-              :model-value="formData.keywords.join(',')"
+              :model-value="formData.keywords?.join(',') ?? ''"
               :placeholder="inputPlaceholder"
               data-testid="keywords-input"
               name="keywords"
