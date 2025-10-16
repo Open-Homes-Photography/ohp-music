@@ -139,10 +139,11 @@
           <FormRow>
             <template #label>Keywords</template>
             <TextInput
-              v-model="formData.keywords"
+              :model-value="formData.keywords.join(',')"
               :placeholder="inputPlaceholder"
               data-testid="keywords-input"
               name="keywords"
+              @input="handleChangeKeywords"
             />
           </FormRow>
         </TabPanel>
@@ -286,6 +287,14 @@ const submit = async () => {
   } finally {
     hideOverlay()
   }
+}
+
+const handleChangeKeywords = (inputEvent: any) => {
+  const newValue = inputEvent.target.value as string
+
+  const splitValue = newValue.split(',').filter(tag => tag !== '')
+
+  formData.keywords = splitValue
 }
 </script>
 

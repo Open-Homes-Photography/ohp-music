@@ -34,7 +34,7 @@ final class SongUpdateData implements Arrayable
             genre: $request->input('data.genre'),
             year: (int) $request->input('data.year'),
             lyrics: $request->input('data.lyrics'),
-            keywords: explode(',', $request->input('data.keywords')), // TODO: trim spaces
+            keywords: $request->input('data.keywords'),
         );
     }
 
