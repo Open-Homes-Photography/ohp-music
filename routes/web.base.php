@@ -10,6 +10,7 @@ use App\Http\Controllers\Download\DownloadSongsController;
 use App\Http\Controllers\Download\SignedDownloadSongsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LastfmController;
+use App\Http\Controllers\LoginOhpController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\RegisterOhpController;
 use App\Http\Controllers\SSO\GoogleCallbackController;
@@ -28,11 +29,13 @@ Route::get(
 )->where(['songId' => Song::ID_REGEX])->name('signed-song-download')->middleware('signed');
 
 Route::middleware('web')->group(static function (): void {
-    Route::get('/', IndexController::class);
+    Route::get('/', IndexController::class)->name('home');
 
     Route::get('remote', static fn () => view('remote'));
 
     Route::get('/register-ohp', RegisterOhpController::class);
+
+    Route::get('/login-ohp', LoginOhpController::class);
 
     Route::middleware('auth')->group(static function (): void {
         Route::prefix('lastfm')->group(static function (): void {

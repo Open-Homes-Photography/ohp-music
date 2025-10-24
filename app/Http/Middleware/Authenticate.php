@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class Authenticate extends Middleware
             return $next($request);
         }
 
-        return redirect()->guest('/');
+        throw new AuthenticationException();
     }
 
     private function ensureUserExistsAndIsLoggedIn(Request $request): bool

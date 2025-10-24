@@ -22,6 +22,10 @@ export const useErrorHandler = (driver: ErrorMessageDriver = 'toast') => {
   const handleHttpError = (error: unknown, statusMessageMap: StatusMessageMap = {}) => {
     logger.error(error)
 
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      window.location.assign(`/login-ohp?intended=${window.location.hash.slice(1)}`)
+    }
+
     if (!axios.isAxiosError(error) || !error.response?.status) {
       return showGenericError()
     }
